@@ -1,8 +1,10 @@
 import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Eye } from 'lucide-react';
 import { installationsMockData } from '../mocks/installations.js';
 
 const Installations = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [countryFilter, setCountryFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
@@ -29,8 +31,7 @@ const Installations = () => {
   }, [searchTerm, countryFilter, statusFilter, elevatorTypeFilter]);
 
   const handleViewDetails = (installationId) => {
-    // Por enquanto apenas log, depois será navegação
-    console.log('Ver detalhes da instalação:', installationId);
+    navigate(`/installations/${installationId}`);
   };
 
   const clearFilters = () => {
