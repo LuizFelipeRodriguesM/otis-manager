@@ -1,28 +1,51 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { AuthProvider, useAuth } from './contexts/AuthContext'
 import LeftBar from './components/layout/LeftBar'
+import ProtectedRoute from './components/ProtectedRoute'
+import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Installations from './pages/Installations'
 import InstallationsDetails from './pages/InstallationsDetails'
 import BudgetSimulation from './pages/BudgetSimulation'
 import InteractionsAdmin from './pages/InteractionsAdmin'
 
+const AppContent = () => {
+  const { isLoggedIn } = useAuth()
+
+  return (
+    <>
+      {isLoggedIn ? (
+        <div className="app">
+          <LeftBar />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/installations" element={<ProtectedRoute><Installations /></ProtectedRoute>} />
+              <Route path="/installations/:id" element={<ProtectedRoute><InstallationsDetails /></ProtectedRoute>} />
+              <Route path="/budget" element={<ProtectedRoute><BudgetSimulation /></ProtectedRoute>} />
+              <Route path="/interactions" element={<ProtectedRoute><InteractionsAdmin /></ProtectedRoute>} />
+              {/* Redireciona login para dashboard se já estiver logado */}
+              <Route path="/login" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            </Routes>
+          </main>
+        </div>
+      ) : (
+        <Routes>
+          <Route path="*" element={<Login />} />
+        </Routes>
+      )}
+    </>
+  )
+}
+
 const App = () => {
   return (
-    <Router>
-      <div className="app">
-        <LeftBar />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/installations" element={<Installations />} />
-            <Route path="/installations/:id" element={<InstallationsDetails />} />
-            <Route path="/budget" element={<BudgetSimulation />} />
-            <Route path="/interactions" element={<InteractionsAdmin />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </AuthProvider>
   )
 }
 

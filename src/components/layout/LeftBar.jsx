@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { BarChart3, Building2, Calculator, Users } from 'lucide-react'
+import { BarChart3, Building2, Calculator, Users, LogOut } from 'lucide-react'
 import ThemeToggle from '../ui/ThemeToggle'
+import { useAuth } from '../../contexts/AuthContext'
 
 const LeftBar = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const [activeItem, setActiveItem] = useState('dashboard')
+  const { logout } = useAuth()
 
   const menuItems = [
     {
@@ -49,6 +51,17 @@ const LeftBar = () => {
     navigate(path)
   }
 
+  const handleLogout = () => {
+    // Faz logout através do contexto (limpa o cache)
+    logout()
+    // Redireciona para a página de login e recarrega a página
+    navigate('/login')
+    // Força o reload da página para garantir que tudo seja limpo
+    setTimeout(() => {
+      window.location.reload()
+    }, 100)
+  }
+
   return (
     <aside className="leftbar">
       <div className="leftbar-header">
@@ -76,6 +89,19 @@ const LeftBar = () => {
             </li>
           ))}
         </ul>
+
+        {/* Botão de Logout */}
+        <div className="leftbar-logout">
+          <button
+            className="leftbar-menu-link logout-btn"
+            onClick={handleLogout}
+          >
+            <span className="leftbar-menu-icon">
+              <LogOut size={20} />
+            </span>
+            <span className="leftbar-menu-text">Sair</span>
+          </button>
+        </div>
       </nav>
     </aside>
   )
