@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import LeftBar from './components/layout/LeftBar'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -9,11 +10,38 @@ import InstallationsDetails from './pages/InstallationsDetails'
 import BudgetSimulation from './pages/BudgetSimulation'
 import InteractionsAdmin from './pages/InteractionsAdmin'
 
+// Componente para verificar rotas inválidas em produção
+const RouteGuard = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { isLoggedIn } = useAuth()
+
+  useEffect(() => {
+    // Verifica se estamos em produção (não em desenvolvimento)
+    const isProduction = import.meta.env.PROD
+
+    if (isProduction) {
+      // Rotas válidas da aplicação
+      const validRoutes = ['/', '/dashboard', '/installations', '/budget', '/interactions', '/login']
+      const isValidRoute = validRoutes.includes(location.pathname) ||
+        location.pathname.startsWith('/installations/') // Para rotas dinâmicas como /installations/:id
+
+      // Se a rota não é válida e não estamos logados, redireciona para login
+      if (!isValidRoute && !isLoggedIn) {
+        navigate('/login', { replace: true })
+      }
+    }
+  }, [location.pathname, isLoggedIn, navigate])
+
+  return null
+}
+
 const AppContent = () => {
   const { isLoggedIn } = useAuth()
 
   return (
     <>
+      <RouteGuard />
       {isLoggedIn ? (
         <div className="app">
           <LeftBar />
