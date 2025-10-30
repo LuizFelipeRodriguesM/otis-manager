@@ -73,6 +73,7 @@ const LeftBar = () => {
         </div>
       </div>
 
+      {/* Navegação principal */}
       <nav className="leftbar-nav">
         <ul className="leftbar-menu">
           {menuItems.map((item) => (
@@ -89,20 +90,20 @@ const LeftBar = () => {
             </li>
           ))}
         </ul>
-
-        {/* Botão de Logout */}
-        <div className="leftbar-logout">
-          <button
-            className="leftbar-menu-link logout-btn"
-            onClick={handleLogout}
-          >
-            <span className="leftbar-menu-icon">
-              <LogOut size={20} />
-            </span>
-            <span className="leftbar-menu-text">Sair</span>
-          </button>
-        </div>
       </nav>
+
+      {/* Botão de Logout no bottom */}
+      <div className="leftbar-logout-bottom">
+        <button
+          className="leftbar-menu-link logout-btn"
+          onClick={handleLogout}
+        >
+          <span className="leftbar-menu-icon">
+            <LogOut size={20} />
+          </span>
+          <span className="leftbar-menu-text">Sair</span>
+        </button>
+      </div>
     </aside>
   )
 }
