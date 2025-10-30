@@ -1,0 +1,185 @@
+// Mock data for Feedback page
+export const feedbacksMockData = [
+  {
+    id: 1,
+    clientName: 'Edifício Central Plaza',
+    clientId: 'INST-001',
+    country: 'Brasil',
+    rating: 5,
+    comment: 'Excelente trabalho! Os elevadores foram instalados com profissionalismo e pontualidade. Equipe muito competente.',
+    status: 'Aprovado',
+    date: '2024-11-15',
+    responsible: 'João Silva',
+    response: 'Obrigado pelo feedback positivo! Ficamos felizes em ter atendido suas expectativas.'
+  },
+  {
+    id: 2,
+    clientName: 'Hospital São Lucas',
+    clientId: 'INST-002',
+    country: 'Argentina',
+    rating: 4,
+    comment: 'Instalação bem executada. Alguns detalhes poderiam ter sido melhorados, mas no geral estamos satisfeitos.',
+    status: 'Aprovado',
+    date: '2024-11-28',
+    responsible: 'Maria García',
+    response: 'Agradecemos seu feedback. Trabalharemos para melhorar ainda mais nossos serviços.'
+  },
+  {
+    id: 3,
+    clientName: 'Shopping Premium',
+    clientId: 'INST-003',
+    country: 'Chile',
+    rating: 3,
+    comment: 'Houve atrasos significativos na instalação. A qualidade do trabalho foi boa, mas o prazo não foi cumprido.',
+    status: 'Aprovado',
+    date: '2024-11-22',
+    responsible: 'Carlos Ruiz',
+    response: 'Lamentamos o atraso ocorrido. Implementamos medidas para evitar situações similares no futuro.'
+  },
+  {
+    id: 4,
+    clientName: 'Torre Empresarial',
+    clientId: 'INST-004',
+    country: 'México',
+    rating: 5,
+    comment: 'Equipe excepcional! Superou todas as nossas expectativas em termos de qualidade e eficiência.',
+    status: 'Aprovado',
+    date: '2024-12-01',
+    responsible: 'Ana López',
+    response: 'Muito obrigado! Seu reconhecimento nos motiva a continuar oferecendo o melhor serviço.'
+  },
+  {
+    id: 5,
+    clientName: 'Condomínio Vista Mar',
+    clientId: 'INST-005',
+    country: 'Brasil',
+    rating: 4,
+    comment: 'Bom trabalho geral. Os elevadores estão funcionando perfeitamente. Pequenos ajustes na comunicação poderiam melhorar.',
+    status: 'Aprovado',
+    date: '2024-11-21',
+    responsible: 'Pedro Santos',
+    response: 'Obrigado pelo feedback. Estamos sempre buscando melhorar nossa comunicação com os clientes.'
+  },
+  {
+    id: 6,
+    clientName: 'Hotel Paradise',
+    clientId: 'INST-006',
+    country: 'Argentina',
+    rating: 2,
+    comment: 'Muitos problemas durante a instalação. Houve falhas na comunicação e o prazo foi extrapolado.',
+    status: 'Pendente',
+    date: '2024-12-05',
+    responsible: 'Roberto Díaz',
+    response: null
+  },
+  {
+    id: 7,
+    clientName: 'Centro Médico Vida',
+    clientId: 'INST-007',
+    country: 'Chile',
+    rating: 5,
+    comment: 'Instalação perfeita para um ambiente hospitalar. Segurança e qualidade impecáveis.',
+    status: 'Aprovado',
+    date: '2024-12-10',
+    responsible: 'Patricia Muñoz',
+    response: 'Ficamos muito felizes com seu reconhecimento! A segurança é nossa prioridade máxima.'
+  },
+  {
+    id: 8,
+    clientName: 'Shopping Boulevard',
+    clientId: 'INST-008',
+    country: 'Colômbia',
+    rating: 4,
+    comment: 'Elevador panorâmico impressionante! O design e a funcionalidade estão excelentes.',
+    status: 'Aprovado',
+    date: '2024-12-12',
+    responsible: 'Miguel Torres',
+    response: 'Obrigado! Ficamos contentes que gostaram do resultado final.'
+  },
+  {
+    id: 9,
+    clientName: 'Escritórios Tech Corp',
+    clientId: 'INST-009',
+    country: 'México',
+    rating: 5,
+    comment: 'Elevadores de alta velocidade perfeitos para nosso prédio corporativo. Recomendamos!',
+    status: 'Aprovado',
+    date: '2024-10-30',
+    responsible: 'Luis Ramirez',
+    response: 'Muito obrigado pela recomendação! É um prazer trabalhar com vocês.'
+  },
+  {
+    id: 10,
+    clientName: 'Museu de Arte Moderna',
+    clientId: 'INST-010',
+    country: 'Chile',
+    rating: 3,
+    comment: 'O elevador funciona bem, mas houve alguns ruídos durante a instalação que afetaram as obras de arte.',
+    status: 'Aprovado',
+    date: '2024-09-12',
+    responsible: 'Andrea Silva',
+    response: 'Lamentamos qualquer inconveniente causado. Implementamos protocolos específicos para ambientes sensíveis.'
+  },
+  {
+    id: 11,
+    clientName: 'Residencial Alto da Serra',
+    clientId: 'INST-011',
+    country: 'Brasil',
+    rating: 1,
+    comment: 'Instalação completamente insatisfatória. Múltiplos atrasos e problemas técnicos.',
+    status: 'Rejeitado',
+    date: '2024-11-15',
+    responsible: 'Fernanda Costa',
+    response: 'Estamos analisando sua reclamação e entraremos em contato para resolver a situação.'
+  },
+  {
+    id: 12,
+    clientName: 'Centro Empresarial Global',
+    clientId: 'INST-012',
+    country: 'Peru',
+    rating: 4,
+    comment: 'Apesar dos atrasos documentais, o resultado final foi muito bom. Equipe técnica competente.',
+    status: 'Aprovado',
+    date: '2024-11-01',
+    responsible: 'Diego Vargas',
+    response: 'Agradecemos sua compreensão e pelo feedback positivo sobre nossa equipe técnica.'
+  },
+  {
+    id: 13,
+    clientName: 'Aeroporto Internacional',
+    clientId: 'INST-013',
+    country: 'Colômbia',
+    rating: 5,
+    comment: 'Sistema de elevadores robusto e confiável. Ideal para ambiente aeroportuário.',
+    status: 'Aprovado',
+    date: '2024-11-20',
+    responsible: 'Sofia Morales',
+    response: 'Obrigado! Certificar a segurança em ambientes críticos é nossa especialidade.'
+  },
+  {
+    id: 14,
+    clientName: 'Universidade Nacional',
+    clientId: 'INST-014',
+    country: 'Argentina',
+    rating: 4,
+    comment: 'Elevadores funcionais e acessíveis. Atenderam bem às necessidades dos estudantes e professores.',
+    status: 'Aprovado',
+    date: '2024-08-28',
+    responsible: 'Gabriel Fernández',
+    response: 'Ficamos contentes em contribuir para a acessibilidade na educação.'
+  },
+  {
+    id: 15,
+    clientName: 'Centro de Convenções',
+    clientId: 'INST-015',
+    country: 'México',
+    rating: 5,
+    comment: 'Elevadores panorâmicos modernos e elegantes. Perfeitos para o centro de convenções.',
+    status: 'Aprovado',
+    date: '2024-12-02',
+    responsible: 'Isabella Gutiérrez',
+    response: 'Muito obrigado! Ficamos felizes que os elevadores atendam às suas necessidades estéticas e funcionais.'
+  }
+];
+
+export default feedbacksMockData;

@@ -9,6 +9,8 @@ import Installations from './pages/Installations'
 import InstallationsDetails from './pages/InstallationsDetails'
 import BudgetSimulation from './pages/BudgetSimulation'
 import InteractionsAdmin from './pages/InteractionsAdmin'
+import FeedbackAdmin from './pages/FeedbackAdmin'
+import ClientFeedback from './pages/ClientFeedback'
 
 // Componente para verificar rotas inválidas em produção
 const RouteGuard = () => {
@@ -22,7 +24,7 @@ const RouteGuard = () => {
 
     if (isProduction) {
       // Rotas válidas da aplicação
-      const validRoutes = ['/', '/dashboard', '/installations', '/budget', '/interactions', '/login']
+      const validRoutes = ['/', '/dashboard', '/installations', '/budget', '/interactions', '/feedback', '/client-feedback', '/login']
       const isValidRoute = validRoutes.includes(location.pathname) ||
         location.pathname.startsWith('/installations/') // Para rotas dinâmicas como /installations/:id
 
@@ -37,27 +39,38 @@ const RouteGuard = () => {
 }
 
 const AppContent = () => {
-  const { isLoggedIn } = useAuth()
+  const { isLoggedIn, userType } = useAuth()
 
   return (
     <>
       <RouteGuard />
       {isLoggedIn ? (
-        <div className="app">
-          <LeftBar />
-          <main className="main-content">
-            <Routes>
-              <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-              <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-              <Route path="/installations" element={<ProtectedRoute><Installations /></ProtectedRoute>} />
-              <Route path="/installations/:id" element={<ProtectedRoute><InstallationsDetails /></ProtectedRoute>} />
-              <Route path="/budget" element={<ProtectedRoute><BudgetSimulation /></ProtectedRoute>} />
-              <Route path="/interactions" element={<ProtectedRoute><InteractionsAdmin /></ProtectedRoute>} />
-              {/* Redireciona login para dashboard se já estiver logado */}
-              <Route path="/login" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            </Routes>
-          </main>
-        </div>
+        userType === 'client' ? (
+          // Interface do Cliente - apenas feedback
+          <Routes>
+            <Route path="/client-feedback" element={<ClientFeedback />} />
+            {/* Redireciona qualquer outra rota para client-feedback */}
+            <Route path="*" element={<ClientFeedback />} />
+          </Routes>
+        ) : (
+          // Interface do Funcionário - dashboard completo
+          <div className="app">
+            <LeftBar />
+            <main className="main-content">
+              <Routes>
+                <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                <Route path="/installations" element={<ProtectedRoute><Installations /></ProtectedRoute>} />
+                <Route path="/installations/:id" element={<ProtectedRoute><InstallationsDetails /></ProtectedRoute>} />
+                <Route path="/budget" element={<ProtectedRoute><BudgetSimulation /></ProtectedRoute>} />
+                <Route path="/interactions" element={<ProtectedRoute><InteractionsAdmin /></ProtectedRoute>} />
+                <Route path="/feedback" element={<ProtectedRoute><FeedbackAdmin /></ProtectedRoute>} />
+                {/* Redireciona login para dashboard se já estiver logado */}
+                <Route path="/login" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              </Routes>
+            </main>
+          </div>
+        )
       ) : (
         <Routes>
           <Route path="*" element={<Login />} />

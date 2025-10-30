@@ -14,17 +14,23 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return localStorage.getItem('isLoggedIn') === 'true'
   })
+  const [userType, setUserType] = useState(() => {
+    return localStorage.getItem('userType') || 'employee' // 'employee' ou 'client'
+  })
 
-  const login = (email) => {
+  const login = (email, type = 'employee') => {
     localStorage.setItem('isLoggedIn', 'true')
     localStorage.setItem('userEmail', email)
+    localStorage.setItem('userType', type)
     setIsLoggedIn(true)
+    setUserType(type)
   }
 
   const logout = () => {
     // Limpa completamente o localStorage (cache)
     localStorage.clear()
     setIsLoggedIn(false)
+    setUserType('employee')
   }
 
   useEffect(() => {
@@ -41,6 +47,7 @@ export const AuthProvider = ({ children }) => {
 
   const value = {
     isLoggedIn,
+    userType,
     login,
     logout,
     userEmail: localStorage.getItem('userEmail')

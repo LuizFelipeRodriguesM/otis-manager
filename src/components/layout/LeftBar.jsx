@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { BarChart3, Building2, Calculator, Users, LogOut } from 'lucide-react'
+import { BarChart3, Building2, Calculator, Users, MessageSquare, LogOut } from 'lucide-react'
 import ThemeToggle from '../ui/ThemeToggle'
 import { useAuth } from '../../contexts/AuthContext'
 
@@ -34,6 +34,12 @@ const LeftBar = () => {
       label: 'Simulação',
       icon: Calculator,
       path: '/budget'
+    },
+    {
+      id: 'feedback',
+      label: 'Feedback',
+      icon: MessageSquare,
+      path: '/feedback'
     }
   ]
 

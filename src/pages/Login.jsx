@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [userType, setUserType] = useState('employee')
   const navigate = useNavigate()
   const { login } = useAuth()
 
@@ -14,10 +15,14 @@ const Login = () => {
     // Login sem verificação - aceita qualquer email e senha
     if (email.trim() && password.trim()) {
       // Faz login através do contexto
-      login(email)
+      login(email, userType)
 
-      // Redireciona para o dashboard
-      navigate('/dashboard')
+      // Redireciona baseado no tipo de usuário
+      if (userType === 'client') {
+        navigate('/client-feedback')
+      } else {
+        navigate('/dashboard')
+      }
     }
   }
 
@@ -57,6 +62,62 @@ const Login = () => {
                 placeholder="Sua senha"
                 required
               />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">
+                Tipo de Usuário
+              </label>
+              <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
+                <label style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  cursor: 'pointer',
+                  padding: '0.75rem',
+                  border: `2px solid ${userType === 'employee' ? '#2563eb' : '#e5e7eb'}`,
+                  borderRadius: '6px',
+                  backgroundColor: userType === 'employee' ? '#eff6ff' : 'transparent',
+                  transition: 'all 0.2s ease'
+                }}>
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="employee"
+                    checked={userType === 'employee'}
+                    onChange={(e) => setUserType(e.target.value)}
+                    style={{ margin: 0 }}
+                  />
+                  <div>
+                    <div style={{ fontWeight: '500', color: '#1f2937' }}>Funcionário</div>
+                    <div style={{ fontSize: '0.875rem', color: '#6b7280' }}>Acesso administrativo</div>
+                  </div>
+                </label>
+                <label style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  cursor: 'pointer',
+                  padding: '0.75rem',
+                  border: `2px solid ${userType === 'client' ? '#2563eb' : '#e5e7eb'}`,
+                  borderRadius: '6px',
+                  backgroundColor: userType === 'client' ? '#eff6ff' : 'transparent',
+                  transition: 'all 0.2s ease'
+                }}>
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="client"
+                    checked={userType === 'client'}
+                    onChange={(e) => setUserType(e.target.value)}
+                    style={{ margin: 0 }}
+                  />
+                  <div>
+                    <div style={{ fontWeight: '500', color: '#1f2937' }}>Cliente</div>
+                    <div style={{ fontSize: '0.875rem', color: '#6b7280' }}>Enviar feedback</div>
+                  </div>
+                </label>
+              </div>
             </div>
 
             <button type="submit" className="btn btn-primary login-btn">
