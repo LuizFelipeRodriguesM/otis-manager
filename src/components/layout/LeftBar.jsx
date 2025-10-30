@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { BarChart3, Building2, MessageSquare } from 'lucide-react'
+import { BarChart3, Building2, Calculator, Users } from 'lucide-react'
+import ThemeToggle from '../ui/ThemeToggle'
 
 const LeftBar = () => {
   const navigate = useNavigate()
@@ -19,6 +20,18 @@ const LeftBar = () => {
       label: 'Instalações',
       icon: Building2,
       path: '/installations'
+    },
+    {
+      id: 'interactions',
+      label: 'Interações',
+      icon: Users,
+      path: '/interactions'
+    },
+    {
+      id: 'budget',
+      label: 'Simulação',
+      icon: Calculator,
+      path: '/budget'
     }
   ]
 
@@ -42,6 +55,9 @@ const LeftBar = () => {
         <h1 className="leftbar-title justify-center items-center">
           OTIS
         </h1>
+        <div className="leftbar-theme-toggle">
+          <ThemeToggle />
+        </div>
       </div>
 
       <nav className="leftbar-nav">
