@@ -54,12 +54,8 @@ const LeftBar = () => {
   const handleLogout = () => {
     // Faz logout através do contexto (limpa o cache)
     logout()
-    // Redireciona para a página de login e recarrega a página
+    // Redireciona para a página de login
     navigate('/login')
-    // Força o reload da página para garantir que tudo seja limpo
-    setTimeout(() => {
-      window.location.reload()
-    }, 100)
   }
 
   return (
